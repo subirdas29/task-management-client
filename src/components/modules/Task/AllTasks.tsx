@@ -13,9 +13,43 @@ import { useRouter } from "next/navigation";
 
 import { taskDelete, taskStatusUpdate } from "@/services/Task";
 import { toast } from "sonner";
+import { useEffect, useState } from "react";
+import { getSocket } from "@/lib/socket";
 
-const AllTasks = ({ tasks, meta }: { tasks: ITask; meta: IMeta }) => {
+const AllTasks = ({ tasks, meta }: { tasks: ITask[]; meta: IMeta }) => {
   const router = useRouter();
+    const [taskList, setTaskList] = useState<ITask[]>(tasks);
+
+     useEffect(() => {
+    const socket = getSocket();
+
+    socket.on("connect", () => {
+      console.log("Connected to socket server");
+    });
+
+    socket.on("taskCreated", (newTask: ITask) => {
+      setTaskList((prev) => [...prev, newTask]);
+    });
+
+    socket.on("taskUpdated", (updatedTask: ITask) => {
+      setTaskList((prev) =>
+        prev.map((task) =>
+          task._id === updatedTask._id ? updatedTask : task
+        )
+      );
+    });
+
+    socket.on("taskDeleted", (deletedId: string) => {
+      setTaskList((prev) => prev.filter((task) => task._id !== deletedId));
+    });
+
+    return () => {
+      socket.off("taskCreated");
+      socket.off("taskUpdated");
+      socket.off("taskDeleted");
+    };
+  }, []);
+
 
   const handleStatusUpdate = async (taskId: string) => {
     try {
@@ -131,7 +165,7 @@ const AllTasks = ({ tasks, meta }: { tasks: ITask; meta: IMeta }) => {
     <div className="mx-8 md:mx-12 lg:mx-20 my-12">
       <h1 className="text-3xl font-bold mb-4 text-center">All Tasks</h1>
       <div className="overflow-x-auto">
-        <TMTable columns={columns} data={Array.isArray(tasks) ? tasks : []} />
+        <TMTable columns={columns} data={taskList} />
         <TablePagination totalPage={meta?.totalPage} />
       </div>
     </div>
