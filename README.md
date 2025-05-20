@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task Management App - Frontend
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This is the frontend client for the Task Management App. It is built using React and Next.js and communicates with the backend API to manage tasks. The frontend supports pagination, task creation with validation, task detail view, status toggling, and real-time updates via Socket.IO.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Link
+Live Link: https://task-management-client-gray.vercel.app/
+api link: https://task-management-server-production-faae.up.railway.app/
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+- Paginated task list (5 tasks per page)
+- Create task form with basic validation (title, description, due date)
+- View detailed task information
+- Toggle task status between "Completed" and "Pending"
+- Real-time updates using Socket.IO for syncing tasks across multiple tabs/windows
+- Promise-based API calls using async/await
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- React.js with Next.js framework
+- Socket.IO client for real-time communication
+- Axios or Fetch API for HTTP requests
+- Tailwind CSS or any other CSS framework (optional)
+- Environment variables for configuration
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
