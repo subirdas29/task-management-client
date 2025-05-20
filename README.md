@@ -50,8 +50,10 @@ This is the frontend client for the Task Management App. It is built using **Rea
    cd task-management-client
 
 2. **Install backend dependencies:**
-    ```npm install
+    ``` 
+    npm install
 
 3. **Create a .env file in the backend folder and add the following environment variables:**
-    ```NEXT_PUBLIC_BASE_API=https://task-management-server-production-faae.up.railway.app/api
-        NEXT_PUBLIC_SOCKET_URL=https://task-management-server-production-faae.up.railway.app
+    ``` 
+    NEXT_PUBLIC_BASE_API=https://task-management-server-production-faae.up.railway.app/api
+    NEXT_PUBLIC_SOCKET_URL=https://task-management-server-production-faae.up.railway.app
