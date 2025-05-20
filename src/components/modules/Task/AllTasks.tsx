@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import { getSocket } from "@/lib/socket";
 
 const AllTasks = ({ tasks, meta }: { tasks: ITask[]; meta: IMeta }) => {
+
   const router = useRouter();
     const [taskList, setTaskList] = useState<ITask[]>(tasks);
 
